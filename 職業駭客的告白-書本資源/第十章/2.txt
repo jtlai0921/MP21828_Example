@@ -1,0 +1,102 @@
+
+ButtonFrame¡G
+
+import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.*;
+import java.io.*;
+
+public class ButtonFrame extends JFrame{
+
+	private JButton buildText1;  
+	private JButton buildText2;
+	File file1=new File("Test1.txt");
+	File file2=new File("Test2.txt");
+
+	public ButtonFrame(){
+		
+		super("Java Test");
+		FlowLayout flo=new FlowLayout();
+		setLayout(flo);
+		buildText1=new JButton("Enter");
+		add(buildText1);
+		buildText2=new JButton("Delete");
+		add(buildText2);
+
+		ButtonHandler1 handler1=new ButtonHandler1();
+		buildText1.addActionListener(handler1);
+		ButtonHandler2 handler2=new ButtonHandler2();
+		buildText2.addActionListener(handler2);
+		
+	}
+	
+	public void write(FileOutputStream st1,long number) throws IOException{
+		for(int i=0;i<number;i++){
+	    String string1="This is an Apple\n";
+		System.out.println(string1);
+		byte[] data=string1.getBytes();
+		st1.write(data, 0, data.length);
+	}
+}
+	
+	private class ButtonHandler1 implements ActionListener{
+		
+		public void actionPerformed(ActionEvent event){
+			try{
+				if(file1.exists()){
+					file1.createNewFile();
+					FileOutputStream stream1=new FileOutputStream(file1);
+					write(stream1,50000);
+				}else{
+					file1.createNewFile();
+					FileOutputStream stream1=new FileOutputStream(file1);
+					write(stream1,50000);
+				}
+				}catch(IOException e){
+					e.printStackTrace();
+				}
+		}
+   
+	}
+	
+	private class ButtonHandler2 implements ActionListener{
+		
+		public void actionPerformed(ActionEvent event){
+			try{
+				if(file2.exists()){
+					file2.createNewFile();
+					FileOutputStream stream1=new FileOutputStream(file2);
+					write(stream1,50000);
+				}else{
+					file2.createNewFile();
+					FileOutputStream stream1=new FileOutputStream(file2);
+					write(stream1,5000);
+				}
+				}catch(IOException e){
+					e.printStackTrace();
+				}
+		}
+   
+	}
+	
+}
+
+Code2¡G
+
+import java.io.*;
+import javax.swing.JFrame;
+
+public class Code2 {
+	
+  public static void main(String[] args){
+	
+	ButtonFrame app=new ButtonFrame();
+	app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	app.setSize(300,200);
+	app.setVisible(true);
+	  
+    }
+  
+}
+

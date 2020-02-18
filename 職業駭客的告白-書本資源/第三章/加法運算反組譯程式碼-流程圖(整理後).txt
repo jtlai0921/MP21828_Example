@@ -1,0 +1,12 @@
+
+number2= dword ptr -14h
+number1= dword ptr -8
+
+mov     [ebp+number1], 0Ah
+mov     [ebp+number2], 0Fh
+mov     eax, [ebp+number1]
+add     eax, [ebp+number2]
+push    eax
+push    offset format   ; "The number is %d"
+call    j__printf
+

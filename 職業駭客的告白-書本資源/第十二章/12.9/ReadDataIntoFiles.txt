@@ -1,0 +1,17 @@
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main(){
+
+    FILE *pFile;
+    char buffer[25];
+    pFile = fopen( "play.txt", "r" );
+    fread( buffer, 25, 1, pFile );
+    printf( "%s", buffer );
+    fclose(pFile);
+	system("PAUSE");
+    return 0;
+}
+
+

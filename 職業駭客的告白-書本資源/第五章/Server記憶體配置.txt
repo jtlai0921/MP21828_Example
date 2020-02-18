@@ -1,0 +1,164 @@
+.text:004113F0
+.text:004113F0 ; =============== S U B R O U T I N E =======================================
+.text:004113F0
+.text:004113F0 ; Attributes: bp-based frame
+.text:004113F0
+.text:004113F0 ; int __cdecl main(int argc, char **argv)
+.text:004113F0 _main           proc near               ; CODE XREF: j__mainj
+.text:004113F0
+.text:004113F0 var_2B0         = byte ptr -2B0h
+.text:004113F0 clientSock      = dword ptr -1ECh
+.text:004113F0 nSize           = dword ptr -1E0h
+.text:004113F0 clientAddr      = sockaddr ptr -1D4h
+.text:004113F0 sockaddr        = sockaddr_in ptr -1BCh
+.text:004113F0 s               = dword ptr -1A4h
+.text:004113F0 wsaData         = WSAData ptr -198h
+.text:004113F0 var_4           = dword ptr -4
+.text:004113F0 argc            = dword ptr  8
+.text:004113F0 argv            = dword ptr  0Ch
+.text:004113F0
+.text:004113F0                 push    ebp
+.text:004113F1                 mov     ebp, esp
+.text:004113F3                 sub     esp, 2B0h
+.text:004113F9                 push    ebx
+.text:004113FA                 push    esi
+.text:004113FB                 push    edi
+.text:004113FC                 lea     edi, [ebp+var_2B0]
+.text:00411402                 mov     ecx, 0ACh
+.text:00411407                 mov     eax, 0CCCCCCCCh
+.text:0041140C                 rep stosd
+.text:0041140E                 mov     eax, ___security_cookie
+.text:00411413                 xor     eax, ebp
+.text:00411415                 mov     [ebp+var_4], eax
+.text:00411418                 mov     esi, esp
+.text:0041141A                 lea     eax, [ebp+wsaData]
+.text:00411420                 push    eax             ; lpWSAData
+.text:00411421                 push    202h            ; wVersionRequested
+.text:00411426                 call    ds:__imp__WSAStartup@8 ; WSAStartup(x,x)
+.text:0041142C                 cmp     esi, esp
+.text:0041142E                 call    j___RTC_CheckEsp
+.text:00411433                 mov     esi, esp
+.text:00411435                 push    6               ; protocol
+.text:00411437                 push    1               ; type
+.text:00411439                 push    2               ; af
+.text:0041143B                 call    ds:__imp__socket@12 ; socket(x,x,x)
+.text:00411441                 cmp     esi, esp
+.text:00411443                 call    j___RTC_CheckEsp
+.text:00411448                 mov     [ebp+s], eax
+.text:0041144E                 mov     eax, 2
+.text:00411453                 mov     [ebp+sockaddr.sin_family], ax
+.text:0041145A                 mov     esi, esp
+.text:0041145C                 push    offset cp       ; "127.0.0.1"
+.text:00411461                 call    ds:__imp__inet_addr@4 ; inet_addr(x)
+.text:00411467                 cmp     esi, esp
+.text:00411469                 call    j___RTC_CheckEsp
+.text:0041146E                 mov     dword ptr [ebp+sockaddr.sin_addr.S_un], eax
+.text:00411474                 mov     esi, esp
+.text:00411476                 push    3ABh            ; hostshort
+.text:0041147B                 call    ds:__imp__htons@4 ; htons(x)
+.text:00411481                 cmp     esi, esp
+.text:00411483                 call    j___RTC_CheckEsp
+.text:00411488                 mov     [ebp+sockaddr.sin_port], ax
+.text:0041148F                 mov     esi, esp
+.text:00411491                 push    10h             ; namelen
+.text:00411493                 lea     eax, [ebp+sockaddr]
+.text:00411499                 push    eax             ; name
+.text:0041149A                 mov     ecx, [ebp+s]
+.text:004114A0                 push    ecx             ; s
+.text:004114A1                 call    ds:__imp__bind@12 ; bind(x,x,x)
+.text:004114A7                 cmp     esi, esp
+.text:004114A9                 call    j___RTC_CheckEsp
+.text:004114AE                 mov     esi, esp
+.text:004114B0                 push    1               ; backlog
+.text:004114B2                 mov     eax, [ebp+s]
+.text:004114B8                 push    eax             ; s
+.text:004114B9                 call    ds:__imp__listen@8 ; listen(x,x)
+.text:004114BF                 cmp     esi, esp
+.text:004114C1                 call    j___RTC_CheckEsp
+.text:004114C6                 mov     [ebp+nSize], 10h
+.text:004114D0                 mov     esi, esp
+.text:004114D2                 lea     eax, [ebp+nSize]
+.text:004114D8                 push    eax             ; addrlen
+.text:004114D9                 lea     ecx, [ebp+clientAddr]
+.text:004114DF                 push    ecx             ; addr
+.text:004114E0                 mov     edx, [ebp+s]
+.text:004114E6                 push    edx             ; s
+.text:004114E7                 call    ds:__imp__accept@12 ; accept(x,x,x)
+.text:004114ED                 cmp     esi, esp
+.text:004114EF                 call    j___RTC_CheckEsp
+.text:004114F4                 mov     [ebp+clientSock], eax
+.text:004114FA                 mov     esi, esp
+.text:004114FC                 push    0               ; flags
+.text:004114FE                 push    offset Str      ; "I love you \n"
+.text:00411503                 call    j__strlen
+.text:00411508                 add     esp, 4
+.text:0041150B                 add     eax, 1
+.text:0041150E                 push    eax             ; len
+.text:0041150F                 push    offset buf      ; "Hi Hello Word for Client \n"
+.text:00411514                 mov     eax, [ebp+clientSock]
+.text:0041151A                 push    eax             ; s
+.text:0041151B                 call    ds:__imp__send@16 ; send(x,x,x,x)
+.text:00411521                 cmp     esi, esp
+.text:00411523                 call    j___RTC_CheckEsp
+.text:00411528                 mov     esi, esp
+.text:0041152A                 mov     eax, [ebp+clientSock]
+.text:00411530                 push    eax             ; s
+.text:00411531                 call    ds:__imp__closesocket@4 ; closesocket(x)
+.text:00411537                 cmp     esi, esp
+.text:00411539                 call    j___RTC_CheckEsp
+.text:0041153E                 mov     esi, esp
+.text:00411540                 mov     eax, [ebp+s]
+.text:00411546                 push    eax             ; s
+.text:00411547                 call    ds:__imp__closesocket@4 ; closesocket(x)
+.text:0041154D                 cmp     esi, esp
+.text:0041154F                 call    j___RTC_CheckEsp
+.text:00411554                 mov     esi, esp
+.text:00411556                 call    ds:__imp__WSACleanup@0 ; WSACleanup()
+.text:0041155C                 cmp     esi, esp
+.text:0041155E                 call    j___RTC_CheckEsp
+.text:00411563                 xor     eax, eax
+.text:00411565                 push    edx
+.text:00411566                 mov     ecx, ebp        ; frame
+.text:00411568                 push    eax
+.text:00411569                 lea     edx, v          ; v
+.text:0041156F                 call    j_@_RTC_CheckStackVars@8 ; _RTC_CheckStackVars(x,x)
+.text:00411574                 pop     eax
+.text:00411575                 pop     edx
+.text:00411576                 pop     edi
+.text:00411577                 pop     esi
+.text:00411578                 pop     ebx
+.text:00411579                 mov     ecx, [ebp+var_4]
+.text:0041157C                 xor     ecx, ebp        ; cookie
+.text:0041157E                 call    j_@__security_check_cookie@4 ; __security_check_cookie(x)
+.text:00411583                 add     esp, 2B0h
+.text:00411589                 cmp     ebp, esp
+.text:0041158B                 call    j___RTC_CheckEsp
+.text:00411590                 mov     esp, ebp
+.text:00411592                 pop     ebp
+.text:00411593                 retn
+.text:00411593 ; ---------------------------------------------------------------------------
+.text:00411594 ; _RTC_framedesc v
+.text:00411594 v               _RTC_framedesc <4, offset dword_41159C>
+.text:00411594                                         ; DATA XREF: _main+179o
+.text:0041159C dword_41159C    dd 0FFFFFE68h, 190h     ; DATA XREF: _main:vo
+.text:004115A4                 dd offset aWsadata      ; "wsaData"
+.text:004115A8                 dd 0FFFFFE44h, 10h
+.text:004115B0                 dd offset aSockaddr     ; "sockaddr"
+.text:004115B4                 dd 0FFFFFE2Ch, 10h
+.text:004115BC                 dd offset aClientaddr   ; "clientAddr"
+.text:004115C0                 dd 0FFFFFE20h, 4
+.text:004115C8                 dd offset aNsize        ; "nSize"
+.text:004115CC aNsize          db 'nSize',0            ; DATA XREF: _main+1D8o
+.text:004115D2 aClientaddr     db 'clientAddr',0       ; DATA XREF: _main+1CCo
+.text:004115DD aSockaddr       db 'sockaddr',0         ; DATA XREF: _main+1C0o
+.text:004115E6 aWsadata        db 'wsaData',0          ; DATA XREF: _main+1B4o
+.text:004115E6 _main           endp
+.text:004115E6
+.text:004115EE                 db 80h dup(0CCh)
+.text:0041166E ; [00000006 BYTES: COLLAPSED FUNCTION _strlen. PRESS CTRL-NUMPAD+ TO EXPAND]
+.text:00411674                 align 10h
+.text:00411680 ; [0000000F BYTES: COLLAPSED FUNCTION __security_check_cookie(x). PRESS CTRL-NUMPAD+ TO EXPAND]
+.text:0041168F                 align 20h
+.text:004116A0
+.text:004116A0 ; =============== S U B R O U T I N E =======================================
+.text:004116A0

@@ -1,0 +1,13 @@
+
+#includestdio.h
+#include TestH.h
+
+DLLIMPORT void ShowTheWords(){
+
+	printf(I am a computer hacker);
+	printf(nThe sum is %d,Count());
+
+}
+
+
+

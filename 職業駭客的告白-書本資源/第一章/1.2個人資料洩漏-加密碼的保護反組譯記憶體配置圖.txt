@@ -1,0 +1,192 @@
+.text:00413680 ; =============== S U B R O U T I N E =======================================
+.text:00413680
+.text:00413680 ; Attributes: bp-based frame
+.text:00413680
+.text:00413680 ; int __cdecl main()
+.text:00413680 _main           proc near               ; CODE XREF: j__mainj
+.text:00413680
+.text:00413680 var_D8          = byte ptr -0D8h
+.text:00413680 enterPassword   = dword ptr -14h
+.text:00413680 password        = dword ptr -8
+.text:00413680
+.text:00413680                 push    ebp
+.text:00413681                 mov     ebp, esp
+.text:00413683                 sub     esp, 0D8h
+.text:00413689                 push    ebx
+.text:0041368A                 push    esi
+.text:0041368B                 push    edi
+.text:0041368C                 lea     edi, [ebp+var_D8]
+.text:00413692                 mov     ecx, 36h
+.text:00413697                 mov     eax, 0CCCCCCCCh
+.text:0041369C                 rep stosd
+.text:0041369E                 mov     [ebp+password], 3039h
+.text:004136A5                 mov     esi, esp
+.text:004136A7                 push    offset Format   ; "請輸入密碼："
+.text:004136AC                 call    ds:__imp__printf
+.text:004136B2                 add     esp, 4
+.text:004136B5                 cmp     esi, esp
+.text:004136B7                 call    j___RTC_CheckEsp
+.text:004136BC                 mov     esi, esp
+.text:004136BE                 lea     eax, [ebp+enterPassword]
+.text:004136C1                 push    eax
+.text:004136C2                 push    offset aD       ; "%d"
+.text:004136C7                 call    ds:__imp__scanf
+.text:004136CD                 add     esp, 8
+.text:004136D0                 cmp     esi, esp
+.text:004136D2                 call    j___RTC_CheckEsp
+.text:004136D7                 mov     esi, esp
+.text:004136D9                 mov     eax, [ebp+enterPassword]
+.text:004136DC                 push    eax
+.text:004136DD                 push    offset aKXmobgD ; "密碼是：%d\n"
+.text:004136E2                 call    ds:__imp__printf
+.text:004136E8                 add     esp, 8
+.text:004136EB                 cmp     esi, esp
+.text:004136ED                 call    j___RTC_CheckEsp
+.text:004136F2                 mov     eax, [ebp+enterPassword]
+.text:004136F5                 cmp     eax, [ebp+password]
+.text:004136F8                 jnz     loc_41389E
+.text:004136FE                 mov     esi, esp
+.text:00413700                 push    offset aNDhOJpdubg ; "個人資料如下：\n"
+.text:00413705                 call    ds:__imp__printf
+.text:0041370B                 add     esp, 4
+.text:0041370E                 cmp     esi, esp
+.text:00413710                 call    j___RTC_CheckEsp
+.text:00413715                 mov     esi, esp
+.text:00413717                 push    offset aImjwbgmuN ; "姓名：秋聲\n"
+.text:0041371C                 call    ds:__imp__printf
+.text:00413722                 add     esp, 4
+.text:00413725                 cmp     esi, esp
+.text:00413727                 call    j___RTC_CheckEsp
+.text:0041372C                 mov     esi, esp
+.text:0041372E                 push    offset aIZobgik ; "性別：男\n"
+.text:00413733                 call    ds:__imp__printf
+.text:00413739                 add     esp, 4
+.text:0041373C                 cmp     esi, esp
+.text:0041373E                 call    j___RTC_CheckEsp
+.text:00413743                 mov     esi, esp
+.text:00413745                 push    offset aEDsbg199753 ; "生日：1997,5,3\n"
+.text:0041374A                 call    ds:__imp__printf
+.text:00413750                 add     esp, 4
+.text:00413753                 cmp     esi, esp
+.text:00413755                 call    j___RTC_CheckEsp
+.text:0041375A                 mov     esi, esp
+.text:0041375C                 push    offset aJazBgexe_elnjz ; "地址：台北市胡扯一
+.text:00413761                 call    ds:__imp__printf
+.text:00413767                 add     esp, 4
+.text:0041376A                 cmp     esi, esp
+.text:0041376C                 call    j___RTC_CheckEsp
+.text:00413771                 mov     esi, esp
+.text:00413773                 push    offset aQBg0221314520 ; "電話：02-21314520\n"
+.text:00413778                 call    ds:__imp__printf
+.text:0041377E                 add     esp, 4
+.text:00413781                 cmp     esi, esp
+.text:00413783                 call    j___RTC_CheckEsp
+.text:00413788                 mov     esi, esp
+.text:0041378A                 push    offset aBlBkpbgdwB ; "婚姻情況：已婚\n"
+.text:0041378F                 call    ds:__imp__printf
+.text:00413795                 add     esp, 4
+.text:00413798                 cmp     esi, esp
+.text:0041379A                 call    j___RTC_CheckEsp
+.text:0041379F                 mov     esi, esp
+.text:004137A1                 push    offset aTJwbgz  ; "配偶名：
+.text:004137A6                 call    ds:__imp__printf
+.text:004137AC                 add     esp, 4
+.text:004137AF                 cmp     esi, esp
+.text:004137B1                 call    j___RTC_CheckEsp
+.text:004137B6                 mov     esi, esp
+.text:004137B8                 push    offset aDpdtjwbgj ; "小三名：
+.text:004137BD                 call    ds:__imp__printf
+.text:004137C3                 add     esp, 4
+.text:004137C6                 cmp     esi, esp
+.text:004137C8                 call    j___RTC_CheckEsp
+.text:004137CD                 mov     esi, esp
+.text:004137CF                 push    offset aLzGEdKXbg67891 ; "郵局提款卡密碼：67891011\n"
+.text:004137D4                 call    ds:__imp__printf
+.text:004137DA                 add     esp, 4
+.text:004137DD                 cmp     esi, esp
+.text:004137DF                 call    j___RTC_CheckEsp
+.text:004137E4                 mov     esi, esp
+.text:004137E6                 push    offset aExisjaIbgdse ; "最常出沒地點：日本\n"
+.text:004137EB                 call    ds:__imp__printf
+.text:004137F1                 add     esp, 4
+.text:004137F4                 cmp     esi, esp
+.text:004137F6                 call    j___RTC_CheckEsp
+.text:004137FB                 mov     esi, esp
+.text:004137FD                 push    offset aDfYIbgPU ; "口頭禪：喵嗚\n"
+.text:00413802                 call    ds:__imp__printf
+.text:00413808                 add     esp, 4
+.text:0041380B                 cmp     esi, esp
+.text:0041380D                 call    j___RTC_CheckEsp
+.text:00413812                 mov     esi, esp
+.text:00413814                 push    offset aBgCdtjnVisiF ; "職業：遊手好閒沒事幹\n"
+.text:00413819                 call    ds:__imp__printf
+.text:0041381F                 add     esp, 4
+.text:00413822                 cmp     esi, esp
+.text:00413824                 call    j___RTC_CheckEsp
+.text:00413829                 mov     esi, esp
+.text:0041382B                 push    offset aMk      ; "專
+.text:00413830                 call    ds:__imp__printf
+.text:00413836                 add     esp, 4
+.text:00413839                 cmp     esi, esp
+.text:0041383B                 call    j___RTC_CheckEsp
+.text:00413840                 mov     esi, esp
+.text:00413842                 push    offset aJndw    ; "早上
+.text:00413847                 call    ds:__imp__printf
+.text:0041384D                 add     esp, 4
+.text:00413850                 cmp     esi, esp
+.text:00413852                 call    j___RTC_CheckEsp
+.text:00413857                 mov     esi, esp
+.text:00413859                 push    offset aJndw_zLseKD@e ; "早上起床後必做的第一
+.text:0041385E                 call    ds:__imp__printf
+.text:00413864                 add     esp, 4
+.text:00413867                 cmp     esi, esp
+.text:00413869                 call    j___RTC_CheckEsp
+.text:0041386E                 mov     esi, esp
+.text:00413870                 push    offset aRkM     ; "最愛的
+.text:00413875                 call    ds:__imp__printf
+.text:0041387B                 add     esp, 4
+.text:0041387E                 cmp     esi, esp
+.text:00413880                 call    j___RTC_CheckEsp
+.text:00413885                 mov     esi, esp
+.text:00413887                 push    offset aJEZ@bgdgmoMxif ; "此生志願：不是溫柔妹不
+.text:0041388C                 call    ds:__imp__printf
+.text:00413892                 add     esp, 4
+.text:00413895                 cmp     esi, esp
+.text:00413897                 call    j___RTC_CheckEsp
+.text:0041389C                 jmp     short loc_4138B5
+.text:0041389E ; ---------------------------------------------------------------------------
+.text:0041389E
+.text:0041389E loc_41389E:                             ; CODE XREF: _main+78j
+.text:0041389E                 mov     esi, esp
+.text:004138A0                 push    offset aKXSdj   ; "密碼輸入
+.text:004138A5                 call    ds:__imp__printf
+.text:004138AB                 add     esp, 4
+.text:004138AE                 cmp     esi, esp
+.text:004138B0                 call    j___RTC_CheckEsp
+.text:004138B5
+.text:004138B5 loc_4138B5:                             ; CODE XREF: _main+21Cj
+.text:004138B5                 mov     esi, esp
+.text:004138B7                 push    offset Command  ; "pause"
+.text:004138BC                 call    ds:__imp__system
+.text:004138C2                 add     esp, 4
+.text:004138C5                 cmp     esi, esp
+.text:004138C7                 call    j___RTC_CheckEsp
+.text:004138CC                 xor     eax, eax
+.text:004138CE                 push    edx
+.text:004138CF                 mov     ecx, ebp        ; frame
+.text:004138D1                 push    eax
+.text:004138D2                 lea     edx, v          ; v
+.text:004138D8                 call    j_@_RTC_CheckStackVars@8 ; _RTC_CheckStackVars(x,x)
+.text:004138DD                 pop     eax
+.text:004138DE                 pop     edx
+.text:004138DF                 pop     edi
+.text:004138E0                 pop     esi
+.text:004138E1                 pop     ebx
+.text:004138E2                 add     esp, 0D8h
+.text:004138E8                 cmp     ebp, esp
+.text:004138EA                 call    j___RTC_CheckEsp
+.text:004138EF                 mov     esp, ebp
+.text:004138F1                 pop     ebp
+.text:004138F2                 retn
+.text:004138F2 ; ---------------------------------------------------------------------------
+.text:004138F3 

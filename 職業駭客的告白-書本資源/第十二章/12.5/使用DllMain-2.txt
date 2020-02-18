@@ -1,0 +1,14 @@
+
+#include "stdio.h"
+#include <stdlib.h> 
+
+extern "C" void ShowTheWords();
+#pragma comment (lib,"TestDLL")
+
+int main(void)
+{
+	ShowTheWords();
+	system("pause");
+	return 0;
+}
+

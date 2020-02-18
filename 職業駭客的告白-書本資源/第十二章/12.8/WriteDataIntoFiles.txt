@@ -1,0 +1,16 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int main(){
+
+    FILE *pFile;
+    char buffer[]={ 'H','e','l','l','o','P','y','t','h','o','n' };
+    pFile = fopen( "play.txt","w" );
+    fwrite(buffer,1,sizeof(buffer),pFile);
+    fclose(pFile);
+	system("PAUSE");
+    return 0;
+
+}
+
+

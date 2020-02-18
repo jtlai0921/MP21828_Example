@@ -1,0 +1,3 @@
+
+push    offset format   ; "Hello World"
+call    j__printf

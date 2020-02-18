@@ -1,0 +1,39 @@
+
+; Attributes: bp-based frame
+
+; int __cdecl main()
+_main proc near
+
+var_D8= byte ptr -0D8h
+number2= dword ptr -14h
+number1= dword ptr -8
+
+push    ebp
+mov     ebp, esp
+sub     esp, 0D8h
+push    ebx
+push    esi
+push    edi
+lea     edi, [ebp+var_D8]
+mov     ecx, 36h
+mov     eax, 0CCCCCCCCh
+rep stosd
+mov     [ebp+number1], 0Ah
+mov     [ebp+number2], 0Fh
+mov     eax, [ebp+number1]
+add     eax, [ebp+number2]
+push    eax
+push    offset format   ; "The number is %d"
+call    j__printf
+add     esp, 8
+xor     eax, eax
+pop     edi
+pop     esi
+pop     ebx
+add     esp, 0D8h
+cmp     ebp, esp
+call    j___RTC_CheckEsp
+mov     esp, ebp
+pop     ebp
+retn
+_main endp

@@ -1,0 +1,46 @@
+#include<stdio.h>
+#include<stdlib.h> 
+
+int main(void){
+
+	int password=12345;
+	int enterPassword;
+
+	printf("請輸入密碼：");
+	scanf("%d",&enterPassword);
+
+	printf("密碼是：%d\n",enterPassword);
+
+	if(enterPassword==password){
+
+	printf("個人資料如下：\n");
+	printf("姓名：秋聲\n");
+	printf("性別：男\n");
+	printf("生日：1997,5,3\n");
+	printf("地址：台北市胡扯一路二段426號500樓\n");
+	printf("電話：02-21314520\n");
+	printf("婚姻情況：已婚\n");
+	printf("配偶名：村本加守子\n");
+	printf("小三名：佐藤優美子\n");
+    printf("郵局提款卡密碼：67891011\n");
+	printf("最常出沒地點：日本\n");
+	printf("口頭禪：喵嗚\n");
+	printf("職業：遊手好閒沒事幹\n");
+	printf("專長：混吃等死進棺材\n");
+	printf("早上醒來後必做的第一件事情：賴床\n");
+	printf("早上起床後必做的第一件事情：做白日夢\n");
+	printf("最愛的美食：披薩\n");
+	printf("此生志願：不是溫柔妹不娶、不是日本妹不嫁\n");
+
+	}else{
+
+		printf("密碼輸入錯誤，下次再來請滾蛋");
+
+	}
+
+	system("pause");
+
+}
+
+
+

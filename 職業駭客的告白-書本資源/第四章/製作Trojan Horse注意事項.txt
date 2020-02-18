@@ -1,0 +1,2 @@
+製作Trojan Horse請在Win XP 裡頭使用Visual C++6.0來製作
+或者是其他C/C++編譯器也可以

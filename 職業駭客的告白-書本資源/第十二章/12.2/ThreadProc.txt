@@ -1,0 +1,32 @@
+
+#include <Windows.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+DWORD WINAPI ThreadProc(LPVOID lpParam)
+{
+    printf("This is ThreadProc function\r\n");
+
+    return 0;
+}
+
+int main(int argc, char* argv[])
+{
+    HANDLE hThread = CreateThread(NULL, 
+                0, 
+                ThreadProc, 
+                NULL, 
+                0, 
+                NULL);
+
+    printf("This is main function\n");
+
+    CloseHandle(hThread);
+
+	system("PAUSE");
+
+	return 0;
+}
+
+
+

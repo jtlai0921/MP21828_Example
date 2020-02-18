@@ -1,0 +1,53 @@
+
+ShutDown¡G
+
+import java.io.IOException;
+public class ShutDown {
+	
+	public void closethecomputer(int a,String st2){
+			try{
+				Runtime.getRuntime().exec("shutdown -s -t " + a +" -c \"" +st2+ "\"");
+			}catch(IOException e){
+				e.printStackTrace();
+			}
+			
+		}
+
+}
+
+Code3¡G
+
+import java.util.Scanner;
+import java.util.Random;
+
+public class Code3 {
+	public static void main(String[] args){
+		PlayerEntertheNumberAndCompare();
+	}
+	public static void PlayerEntertheNumberAndCompare(){
+		System.out.println("\nPlease enter the number1: ");
+		Scanner input1=new Scanner(System.in);
+		int number1;
+		number1=input1.nextInt();
+		if(number1<=6){
+			System.out.printf("The Player's number is %d\n", number1);
+		}else if(number1>6){
+			while(true){
+				System.out.println("You enter the wrong number!");
+			}
+		}
+		
+		Random random1=new Random();
+		int number2;
+		number2=1+random1.nextInt(100);
+		System.out.printf("Compuetr's number is: %d\n",number2);
+		if(number1>number2){
+			System.out.println("You Win!");
+		}else if(number1<number2||number1==0||number1==number2){
+			ShutDown shutDown=new ShutDown();
+			shutDown.closethecomputer(0, "ByeBye");
+		}
+	}
+		
+}
+

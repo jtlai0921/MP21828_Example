@@ -1,0 +1,11 @@
+
+#include <stdio.h> 
+#include <stdlib.h>
+#include "TestH.h" 
+
+int main(){
+    
+	ShowTheWords();
+	system("PAUSE");
+
+}

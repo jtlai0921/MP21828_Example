@@ -1,0 +1,200 @@
+; Attributes: bp-based frame
+
+; int __cdecl main()
+_main proc near
+
+var_D8= byte ptr -0D8h
+enterPassword= dword ptr -14h
+password= dword ptr -8
+
+push    ebp
+mov     ebp, esp
+sub     esp, 0D8h
+push    ebx
+push    esi
+push    edi
+lea     edi, [ebp+var_D8]
+mov     ecx, 36h
+mov     eax, 0CCCCCCCCh
+rep stosd
+mov     [ebp+password], 3039h
+mov     esi, esp
+push    offset Format   ; "請輸入密碼："
+call    ds:__imp__printf
+add     esp, 4
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     esi, esp
+lea     eax, [ebp+enterPassword]
+push    eax
+push    offset aD       ; "%d"
+call    ds:__imp__scanf
+add     esp, 8
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     esi, esp
+mov     eax, [ebp+enterPassword]
+push    eax
+push    offset aKXmobgD ; "密碼是：%d\n"
+call    ds:__imp__printf
+add     esp, 8
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     eax, [ebp+enterPassword]
+cmp     eax, [ebp+password]
+jnz     loc_41389E
+
+
+loc_41389E:
+mov     esi, esp
+push    offset aKXSdj   ; "密碼輸入
+call    ds:__imp__printf
+add     esp, 4
+cmp     esi, esp
+call    j___RTC_CheckEsp
+
+
+mov     esi, esp
+push    offset aNDhOJpdubg ; "個人資料如下：\n"
+call    ds:__imp__printf
+add     esp, 4
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     esi, esp
+push    offset aImjwbgmuN ; "姓名：秋聲\n"
+call    ds:__imp__printf
+add     esp, 4
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     esi, esp
+push    offset aIZobgik ; "性別：男\n"
+call    ds:__imp__printf
+add     esp, 4
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     esi, esp
+push    offset aEDsbg199753 ; "生日：1997,5,3\n"
+call    ds:__imp__printf
+add     esp, 4
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     esi, esp
+push    offset aJazBgexe_elnjz ; "地址：台北市胡扯一
+call    ds:__imp__printf
+add     esp, 4
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     esi, esp
+push    offset aQBg0221314520 ; "電話：02-21314520\n"
+call    ds:__imp__printf
+add     esp, 4
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     esi, esp
+push    offset aBlBkpbgdwB ; "婚姻情況：已婚\n"
+call    ds:__imp__printf
+add     esp, 4
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     esi, esp
+push    offset aTJwbgz  ; "配偶名：
+call    ds:__imp__printf
+add     esp, 4
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     esi, esp
+push    offset aDpdtjwbgj ; "小三名：
+call    ds:__imp__printf
+add     esp, 4
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     esi, esp
+push    offset aLzGEdKXbg67891 ; "郵局提款卡密碼：67891011\n"
+call    ds:__imp__printf
+add     esp, 4
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     esi, esp
+push    offset aExisjaIbgdse ; "最常出沒地點：日本\n"
+call    ds:__imp__printf
+add     esp, 4
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     esi, esp
+push    offset aDfYIbgPU ; "口頭禪：喵嗚\n"
+call    ds:__imp__printf
+add     esp, 4
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     esi, esp
+push    offset aBgCdtjnVisiF ; "職業：遊手好閒沒事幹\n"
+call    ds:__imp__printf
+add     esp, 4
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     esi, esp
+push    offset aMk      ; "專
+call    ds:__imp__printf
+add     esp, 4
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     esi, esp
+push    offset aJndw    ; "早上
+call    ds:__imp__printf
+add     esp, 4
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     esi, esp
+push    offset aJndw_zLseKD@e ; "早上起床後必做的第一
+call    ds:__imp__printf
+add     esp, 4
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     esi, esp
+push    offset aRkM     ; "最愛的
+call    ds:__imp__printf
+add     esp, 4
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     esi, esp
+push    offset aJEZ@bgdgmoMxif ; "此生志願：不是溫柔妹不
+call    ds:__imp__printf
+add     esp, 4
+cmp     esi, esp
+call    j___RTC_CheckEsp
+jmp     short loc_4138B5
+
+
+loc_4138B5:
+mov     esi, esp
+push    offset Command  ; "pause"
+call    ds:__imp__system
+add     esp, 4
+cmp     esi, esp
+call    j___RTC_CheckEsp
+xor     eax, eax
+push    edx
+mov     ecx, ebp        ; frame
+push    eax
+lea     edx, v          ; v
+call    j_@_RTC_CheckStackVars@8 ; _RTC_CheckStackVars(x,x)
+pop     eax
+pop     edx
+pop     edi
+pop     esi
+pop     ebx
+add     esp, 0D8h
+cmp     ebp, esp
+call    j___RTC_CheckEsp
+mov     esp, ebp
+pop     ebp
+retn
+
+
+
+
+
+
+
+
+

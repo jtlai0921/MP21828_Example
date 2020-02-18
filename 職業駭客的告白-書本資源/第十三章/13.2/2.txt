@@ -1,0 +1,22 @@
+
+
+
+#include "stdio.h"
+#include "windows.h"
+#include <stdlib.h> 
+
+typedef void (*PFN_HOOKSTART)();
+
+void main()
+{
+	HMODULE			hDll = NULL;
+	PFN_HOOKSTART	HookStart = NULL;
+	hDll = LoadLibraryA("TestDLL.dll");
+	HookStart = (PFN_HOOKSTART)GetProcAddress(hDll, "HookStart");
+	HookStart();
+	FreeLibrary(hDll);
+	printf("Hook Now Watch Out¡I");
+	system("pause");
+}
+
+

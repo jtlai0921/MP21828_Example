@@ -1,0 +1,47 @@
+.text:0042D4F0
+.text:0042D4F0 ; =============== S U B R O U T I N E =======================================
+.text:0042D4F0
+.text:0042D4F0 ; Attributes: bp-based frame
+.text:0042D4F0
+.text:0042D4F0 ; int __cdecl main()
+.text:0042D4F0 _main           proc near               ; CODE XREF: j__mainj
+.text:0042D4F0
+.text:0042D4F0 var_D8          = byte ptr -0D8h
+.text:0042D4F0 number2         = dword ptr -14h
+.text:0042D4F0 number1         = dword ptr -8
+.text:0042D4F0
+.text:0042D4F0                 push    ebp
+.text:0042D4F1                 mov     ebp, esp
+.text:0042D4F3                 sub     esp, 0D8h
+.text:0042D4F9                 push    ebx
+.text:0042D4FA                 push    esi
+.text:0042D4FB                 push    edi
+.text:0042D4FC                 lea     edi, [ebp+var_D8]
+.text:0042D502                 mov     ecx, 36h
+.text:0042D507                 mov     eax, 0CCCCCCCCh
+.text:0042D50C                 rep stosd
+.text:0042D50E                 mov     [ebp+number1], 0Ah
+.text:0042D515                 mov     [ebp+number2], 0Fh
+.text:0042D51C                 mov     eax, [ebp+number1]
+.text:0042D51F                 add     eax, [ebp+number2]
+.text:0042D522                 push    eax
+.text:0042D523                 push    offset format   ; "The number is %d"
+.text:0042D528                 call    j__printf
+.text:0042D52D                 add     esp, 8
+.text:0042D530                 xor     eax, eax
+.text:0042D532                 pop     edi
+.text:0042D533                 pop     esi
+.text:0042D534                 pop     ebx
+.text:0042D535                 add     esp, 0D8h
+.text:0042D53B                 cmp     ebp, esp
+.text:0042D53D                 call    j___RTC_CheckEsp
+.text:0042D542                 mov     esp, ebp
+.text:0042D544                 pop     ebp
+.text:0042D545                 retn
+.text:0042D545 _main           endp
+.text:0042D545
+.text:0042D545 ; ---------------------------------------------------------------------------
+.text:0042D546                 db 14Ah dup(0CCh)
+.text:0042D690
+.text:0042D690 ; =============== S U B R O U T I N E =======================================
+.text:0042D690

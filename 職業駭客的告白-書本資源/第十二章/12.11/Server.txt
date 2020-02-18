@@ -1,0 +1,39 @@
+
+
+#include <winsock2.h>
+#include <stdlib.h> 
+#pragma comment (lib, "ws2_32")
+
+int main(int argc, char* argv[])
+{
+    WSADATA wsaData;
+    WSAStartup(MAKEWORD(2,2), &wsaData);
+    
+    SOCKET s = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
+    
+    sockaddr_in sockaddr;
+    sockaddr.sin_family = PF_INET;
+    sockaddr.sin_addr.S_un.S_addr = inet_addr("127.0.0.1");
+    sockaddr.sin_port = htons(999);
+    
+    bind(s, (SOCKADDR*)&sockaddr, sizeof(SOCKADDR));
+    
+    listen(s, 1);
+    
+    SOCKADDR clientAddr;
+    int nSize = sizeof(SOCKADDR);
+    SOCKET clientSock;
+    clientSock = accept(s, (SOCKADDR*)&clientAddr, &nSize);
+    
+    send(clientSock, "Hi~TCP/IP\n", strlen("Hi~TCP/IP\n") + sizeof(char), NULL);
+    
+    closesocket(clientSock);
+    closesocket(s);
+    
+    WSACleanup();
+
+	system("pause");
+
+    return 0;
+}
+

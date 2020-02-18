@@ -1,0 +1,9 @@
+
+#include<stdio.h>
+#include "TestH.h"
+
+DLLIMPORT void ShowTheWords(){
+
+	printf("Hello My First DLL Project");
+
+}

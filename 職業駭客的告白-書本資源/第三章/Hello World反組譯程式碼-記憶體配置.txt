@@ -1,0 +1,40 @@
+.text:0042D4F0
+.text:0042D4F0 ; =============== S U B R O U T I N E =======================================
+.text:0042D4F0
+.text:0042D4F0 ; Attributes: bp-based frame
+.text:0042D4F0
+.text:0042D4F0 ; int __cdecl main()
+.text:0042D4F0 _main           proc near               ; CODE XREF: j__mainj
+.text:0042D4F0
+.text:0042D4F0 var_C0          = byte ptr -0C0h
+.text:0042D4F0
+.text:0042D4F0                 push    ebp
+.text:0042D4F1                 mov     ebp, esp
+.text:0042D4F3                 sub     esp, 0C0h
+.text:0042D4F9                 push    ebx
+.text:0042D4FA                 push    esi
+.text:0042D4FB                 push    edi
+.text:0042D4FC                 lea     edi, [ebp+var_C0]
+.text:0042D502                 mov     ecx, 30h
+.text:0042D507                 mov     eax, 0CCCCCCCCh
+.text:0042D50C                 rep stosd
+.text:0042D50E                 push    offset format   ; "Hello World"
+.text:0042D513                 call    j__printf
+.text:0042D518                 add     esp, 4
+.text:0042D51B                 xor     eax, eax
+.text:0042D51D                 pop     edi
+.text:0042D51E                 pop     esi
+.text:0042D51F                 pop     ebx
+.text:0042D520                 add     esp, 0C0h
+.text:0042D526                 cmp     ebp, esp
+.text:0042D528                 call    j___RTC_CheckEsp
+.text:0042D52D                 mov     esp, ebp
+.text:0042D52F                 pop     ebp
+.text:0042D530                 retn
+.text:0042D530 _main           endp
+.text:0042D530
+.text:0042D530 ; ---------------------------------------------------------------------------
+.text:0042D531                 db 15Fh dup(0CCh)
+.text:0042D690
+.text:0042D690 ; =============== S U B R O U T I N E =======================================
+.text:0042D690

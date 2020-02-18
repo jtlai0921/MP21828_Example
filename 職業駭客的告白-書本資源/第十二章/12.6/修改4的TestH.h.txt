@@ -1,0 +1,15 @@
+
+
+#include"stdio.h"
+
+#define DLLIMPORT __declspec(dllexport)
+
+DLLIMPORT  void ShowTheWords();
+
+int Count(){
+
+	int a=5;
+	int b=10;
+	return a+b;
+
+}

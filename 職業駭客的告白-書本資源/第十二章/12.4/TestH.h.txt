@@ -1,0 +1,7 @@
+
+#include"stdio.h"
+
+#define DLLIMPORT __declspec(dllexport)
+
+DLLIMPORT  void ShowTheWords();
+

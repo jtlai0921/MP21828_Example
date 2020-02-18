@@ -1,0 +1,26 @@
+
+#include<stdio.h>
+#include<stdlib.h>
+
+void play();
+int main(){
+	
+	printf("Please enter the Password:\n");
+	
+	int number;
+	scanf("%d",&number);
+	if(number==12345){
+		printf("Welcome to GameWorld^^\n");
+	}else{
+		printf("Get Out¡I\n");
+		exit(1);
+	}
+	play();
+	system("PAUSE");
+	return 0;
+}
+
+void play(){
+	printf("Play The Game Now^^\n");
+}
+

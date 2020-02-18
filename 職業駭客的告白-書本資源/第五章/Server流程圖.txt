@@ -1,0 +1,136 @@
+
+; Attributes: bp-based frame
+
+; int __cdecl main(int argc, char **argv)
+_main proc near
+
+var_2B0= byte ptr -2B0h
+clientSock= dword ptr -1ECh
+nSize= dword ptr -1E0h
+clientAddr= sockaddr ptr -1D4h
+sockaddr= sockaddr_in ptr -1BCh
+s= dword ptr -1A4h
+wsaData= WSAData ptr -198h
+var_4= dword ptr -4
+argc= dword ptr  8
+argv= dword ptr  0Ch
+
+push    ebp
+mov     ebp, esp
+sub     esp, 2B0h
+push    ebx
+push    esi
+push    edi
+lea     edi, [ebp+var_2B0]
+mov     ecx, 0ACh
+mov     eax, 0CCCCCCCCh
+rep stosd
+mov     eax, ___security_cookie
+xor     eax, ebp
+mov     [ebp+var_4], eax
+mov     esi, esp
+lea     eax, [ebp+wsaData]
+push    eax             ; lpWSAData
+push    202h            ; wVersionRequested
+call    ds:__imp__WSAStartup@8 ; WSAStartup(x,x)
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     esi, esp
+push    6               ; protocol
+push    1               ; type
+push    2               ; af
+call    ds:__imp__socket@12 ; socket(x,x,x)
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     [ebp+s], eax
+mov     eax, 2
+mov     [ebp+sockaddr.sin_family], ax
+mov     esi, esp
+push    offset cp       ; "127.0.0.1"
+call    ds:__imp__inet_addr@4 ; inet_addr(x)
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     dword ptr [ebp+sockaddr.sin_addr.S_un], eax
+mov     esi, esp
+push    3ABh            ; hostshort
+call    ds:__imp__htons@4 ; htons(x)
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     [ebp+sockaddr.sin_port], ax
+mov     esi, esp
+push    10h             ; namelen
+lea     eax, [ebp+sockaddr]
+push    eax             ; name
+mov     ecx, [ebp+s]
+push    ecx             ; s
+call    ds:__imp__bind@12 ; bind(x,x,x)
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     esi, esp
+push    1               ; backlog
+mov     eax, [ebp+s]
+push    eax             ; s
+call    ds:__imp__listen@8 ; listen(x,x)
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     [ebp+nSize], 10h
+mov     esi, esp
+lea     eax, [ebp+nSize]
+push    eax             ; addrlen
+lea     ecx, [ebp+clientAddr]
+push    ecx             ; addr
+mov     edx, [ebp+s]
+push    edx             ; s
+call    ds:__imp__accept@12 ; accept(x,x,x)
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     [ebp+clientSock], eax
+mov     esi, esp
+push    0               ; flags
+push    offset Str      ; "I love you \n"
+call    j__strlen
+add     esp, 4
+add     eax, 1
+push    eax             ; len
+push    offset buf      ; "Hi Hello Word for Client \n"
+mov     eax, [ebp+clientSock]
+push    eax             ; s
+call    ds:__imp__send@16 ; send(x,x,x,x)
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     esi, esp
+mov     eax, [ebp+clientSock]
+push    eax             ; s
+call    ds:__imp__closesocket@4 ; closesocket(x)
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     esi, esp
+mov     eax, [ebp+s]
+push    eax             ; s
+call    ds:__imp__closesocket@4 ; closesocket(x)
+cmp     esi, esp
+call    j___RTC_CheckEsp
+mov     esi, esp
+call    ds:__imp__WSACleanup@0 ; WSACleanup()
+cmp     esi, esp
+call    j___RTC_CheckEsp
+xor     eax, eax
+push    edx
+mov     ecx, ebp        ; frame
+push    eax
+lea     edx, v          ; v
+call    j_@_RTC_CheckStackVars@8 ; _RTC_CheckStackVars(x,x)
+pop     eax
+pop     edx
+pop     edi
+pop     esi
+pop     ebx
+mov     ecx, [ebp+var_4]
+xor     ecx, ebp        ; cookie
+call    j_@__security_check_cookie@4 ; __security_check_cookie(x)
+add     esp, 2B0h
+cmp     ebp, esp
+call    j___RTC_CheckEsp
+mov     esp, ebp
+pop     ebp
+retn

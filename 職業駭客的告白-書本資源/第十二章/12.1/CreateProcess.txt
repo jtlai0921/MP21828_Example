@@ -1,0 +1,39 @@
+
+#include <windows.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char* argv[])
+{
+	TCHAR szPath[MAX_PATH] = {L"C:\\Windows\\System32\\calc.exe"};
+    PROCESS_INFORMATION pi = { 0 };
+    STARTUPINFO si = { 0 };
+
+    si.cb = sizeof(STARTUPINFO);
+
+    BOOL create = CreateProcess(szPath,
+                NULL,
+                NULL,
+                NULL,
+                FALSE,
+                NULL,
+                NULL,
+                NULL,
+                &si,
+                &pi);
+
+    if ( create == FALSE )
+    {
+        printf("CreateProcess failed \n");
+        return -1;
+    }
+
+    CloseHandle(pi.hThread);
+    CloseHandle(pi.hProcess);
+
+	system("PAUSE");
+	return 0;
+}
+
+
+

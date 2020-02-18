@@ -1,0 +1,24 @@
+#pragma comment(lib, "ws2_32.lib")
+
+#define MasterPort 999  //定??听端口999
+#include <stdlib.h>
+#include "stdio.h"
+#include <winsock2.h>
+
+typedef void (*PFN_HOOKSTART)();
+
+
+main()   //主函?入口
+{        
+
+HMODULE            hDll = NULL;
+    PFN_HOOKSTART    HookStart = NULL;
+    hDll = LoadLibraryA("TestDLL.dll");
+    HookStart = (PFN_HOOKSTART)GetProcAddress(hDll, "HookStart");
+    HookStart();
+    FreeLibrary(hDll);
+    system("pause");
+    return 0;
+}
+
+
